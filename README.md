@@ -1,7 +1,7 @@
 A To-do List app project made by me.
 
-# ENGLISH VERSION FOR VISUAL STUDIO CODE
-I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.
+<h1>ENGLISH VERSION FOR VISUAL STUDIO CODE</h1>
+<h2>I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.</h2>
 
 
 First, o a git clone of this project:
@@ -22,11 +22,11 @@ npm run build:css
 ```
 Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
 
-## That's it! This project was made by Rick with ☕ and 💻.
+<h1>That's it! This project was made by Rick with ☕ and 💻.</h1>
 
 
-# VERSÃO EM PT-BR PARA O VISUAL STUDIO CODE
-Eu recomendo você instalar a extensão Live Server ou uma similar no seu Visual Studio Code para abrir o arquivo.
+<h1>VERSÃO EM PT-BR PARA O VISUAL STUDIO CODE</h1>
+<h2>Eu recomendo você instalar a extensão Live Server ou uma similar no seu Visual Studio Code para abrir o arquivo.</h2>
 
 
 Primeiro, faça um git clone desse projeto:
@@ -47,4 +47,4 @@ npm run build:css
 ```
 Execute o arquivo HTML, ou abra o arquivo com o Live Server no seu Visual Studio Code.
 
-## É isso! Este projeto foi criado por Rick com ☕ e 💻.
+<h1>É isso! Este projeto foi criado por Rick com ☕ e 💻.</h1>
