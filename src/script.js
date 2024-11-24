@@ -335,12 +335,14 @@ function changeLanguage() {
             let message = document.querySelector('#alertPhrase')
             message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
         }
+
+        if (timerAlert) title.textContent = 'Timer ended! Rest for a while...'
     } else {
         // Exibe a data no formato "Day de Month"
         day.textContent = `${dayName} de`;
         month.textContent = monthName;
         month.style.display = 'block'; // Garante que o mês apareça
-
+        
         input.setAttribute('placeholder', 'Digite aqui sua tarefa')
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson';
         addTaskButton.textContent = 'Adicionar tarefa'
@@ -349,5 +351,7 @@ function changeLanguage() {
             let message = document.querySelector('#alertPhrase')
             message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
         }
+
+        if (timerAlert) title.textContent = 'Timer acabado! Descanse um pouco...'
     }
 }
