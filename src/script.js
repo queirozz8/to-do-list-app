@@ -1,303 +1,278 @@
 // Pegando os elementos
-const date = new Date();
-
-const body = document.querySelector('body')
-const header = document.querySelector('header');
-const main = document.querySelector('main');
-let line = document.querySelector('#line')
-
-const dateDiv = document.querySelector('#date-div');
-const input = document.querySelector('#input');
-
-const langButton = document.querySelector('#lang-button');
-
-const day = document.createElement('h2');
-const month = document.createElement('h2');
-const year = document.createElement('h2');
-
-let phrase = document.querySelector('#phrase');
-let addTaskButton = document.querySelector('#add-task-button');
 
 let language = 'pt-BR';
 
-let monthName = new Intl.DateTimeFormat(language, { month: 'long' }).format(date);
-let lightDarkMode = document.querySelector('#light-dark-mode')
 
-let divPomodoroTitle = document.querySelector('#title-pomodoro')
-let divPomodoroTimer = document.querySelector('#pomodoro-timer-div')
-let aside = document.querySelector('aside')
-let timerMinutes = document.querySelector('#pomodoro-minutes')
-let timerSeconds = document.querySelector('#pomodoro-seconds')
-const divPomodoroButton = document.querySelector('#div-pomodoro-button')
-let startPomodoroButton = document.querySelector('#start-pomodoro')
-const resetPomodoroButton = document.querySelector('#reset-pomodoro')
+const body = document.querySelector('body');
+const header = document.querySelector('header');
+    // Linha horizontal que separa o título do resto do site
+    let line = document.querySelector('#line');
+    
+    
+    // Aside é onde o Pomodoro ficará
+    const aside = document.querySelector('aside');
+    let divPomodoroTitle = document.querySelector('#title-pomodoro');
+    let divPomodoroTimer = document.querySelector('#pomodoro-timer-div');
+    // Minutos do timer:
+    let timerMinutes = document.querySelector('#pomodoro-minutes');
+    // Segundos do timer:
+    let timerSeconds = document.querySelector('#pomodoro-seconds');
 
-let timerAlert = document.createElement('div')
-let title = document.createElement('h1')
-const okAlertButton = document.createElement('button')
-timerAlert.setAttribute('class', 'flex flex-col justify-center items-center gap-10 absolute w-[500px] h-38 p-3 z-50 border border-borderTimerAlertDark bg-timerAlertMainDark text-timerAlertTextDark')
-title.setAttribute('class', 'text-2xl')
-okAlertButton.setAttribute('class', 'text-1xl p-2')
+    // Div onde ficará os botões do Pomodoro
+    const divPomodoroButton = document.querySelector('#div-pomodoro-button');
+    // O botão de start e pause é declarado com o let porque são 2 botões em 1 só, o ícone muda
+    let startPausePomodoroButton = document.querySelector('#start-pause-pomodoro');
+    // Svgs dos botões
+    const startSvg = startPausePomodoroButton.innerHTML;
+    const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#808189" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>';
+    const resetPomodoroButton = document.querySelector('#reset-pomodoro');
+    
+    // Timer de Pomodoro
+    aside.insertBefore(divPomodoroTimer, divPomodoroButton)
+    
 
-const sunSvg = lightDarkMode.innerHTML
-const moonSvg = '<svg class="moon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>'
+    // Botão para escolher entre PT-BR ou Inglês
+    const langButton = document.querySelector('#lang-button');
+    
+    
+    let lightDarkButton = document.querySelector('#light-dark-mode');
+    // Svgs dos ícones do botão de modo claro e escuro
+    const sunSvg = lightDarkButton.innerHTML;
+    const moonSvg = '<svg class="moon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    
+    
+    // Constructor da data, será por ele que os elementos de data pegarão a data de hoje
+    const date = new Date();
+    // Div da data de hoje
+    const dateDiv = document.querySelector('#date-div');
+    const day = document.createElement('h2');
+    // Título onde ficará a data.
+    const month = document.createElement('h2');
+    // Conteúdo do month, que vai usar a api para pegar o mês atual, e mostrar na tela com o idioma atual
+    let monthName = new Intl.DateTimeFormat(language, { month: 'long' }).format(date);
+    const year = document.createElement('h2');
+    
+    // Configurações iniciais da data
+    day.textContent = `${date.getDate()} de`;
+    day.classList.add('text-3xl');
 
-const startSvg = startPomodoroButton.innerHTML
-const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#808189" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>'
+    month.textContent = monthName;
+    month.classList.add('text-3xl');
 
-const clearAllTasks = document.querySelector('#clear-all-tasks')
+    year.textContent = date.getFullYear();
+    
+    
+    // Frase motivacional do Mike Tyson
+    let phrase = document.querySelector('#phrase');
+    
+    
+    // Inserir a data na dateDiv
+    header.insertBefore(dateDiv, phrase);
+    document.addEventListener("DOMContentLoaded", () => { dateDiv.append(day, month, year) }) // Ex: 18 de novembro, ou November 18th
+    
+
+// Input das tarefas
+const taskInput = document.querySelector('#task-input');
+let addTaskButton = document.querySelector('#add-task-button');
+const clearAllTasks = document.querySelector('#clear-all-tasks');
+// Dentro do main é onde ficam as tarefas
+const main = document.querySelector('main');
 
 
+// Funcionalidade principal do site, adicionar as tarefas
 
-// Configurações iniciais
-day.textContent = `${date.getDate()} de`;
-day.classList.add('text-3xl');
-month.textContent = monthName;
-month.classList.add('text-3xl');
-year.textContent = date.getFullYear();
+// Para o botão de adicionar tarefa, usando o mouse
+addTaskButton.addEventListener('click', () => {
+    if (taskInput.value.length >= 1 && main.children.length > 10) {
+        addTask()
+        if (main.children.length === 10) addAlertAndDisableInput() // Se após adicionar, a quantidade de tarefas for igual a 10, executa a função
+    } else if (main.children.length > 10) addAlertAndDisableInput()
+})
 
-// Inserir a data na dateDiv
-header.insertBefore(dateDiv, phrase);
-document.addEventListener("DOMContentLoaded", () => { dateDiv.append(day, month, year) }) // Ex: 18 de novembro, ou November 18th
+// Para a tecla Enter do teclado
+taskInput.addEventListener("keydown", (event) => { if (event.key === 'Enter') {
+    if (taskInput.value.length >= 1 && main.children.length < 10) {
+        addTask()
+        /* Quando a qtde já for 10, ele instantaneamente vai chamar a função. 
+        Essa linha existe para que o usuário não tenha que tentar adicionar mais uma tarefa para que a função seja chamada */
+        if (main.children.length === 10) addAlertAndDisableInput()
+    } else if (main.children.length > 10) addAlertAndDisableInput()
+}
+})
 
-// Timer de Pomodoro
-aside.insertBefore(divPomodoroTimer, divPomodoroButton)
+clearAllTasks.addEventListener('click', () => {
+    main.replaceChildren() // Substitui todas as tarefas por nada
+    taskInput.disabled = false
+    body.removeChild(divTasksLimitAlert) // Se houver o aviso do limite de tarefas, ele é removido também
+})
 
+
+// Função para criar uma tarefa
+function addTask() {
+    let task = document.createElement('article')
+    task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl p-3 border bg-secondaryColor border-zinc-500')
+    
+    // Botão para subir a tarefa na lista
+    let upArrow = document.createElement('button')
+    upArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>'
+    
+    // Botão para descer a tarefa na lista
+    let downArrow = document.createElement('button')
+    downArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>'
+    
+    // EventListener do upArrow
+    upArrow.addEventListener('click', () => {
+        let prevTask = task.previousSibling
+        // Se existir um elemento anterior (prevTask) ao atual, então adicionamos a task atual antes do anterior
+        if (prevTask) main.insertBefore(task, prevTask)
+    })
+    
+    // EventListener do downArrow
+    downArrow.addEventListener('click', () => {
+        let nextTask = task.nextSibling
+        if (nextTask) main.insertBefore(nextTask, task)
+    })
+    
+    // Botão de excluir a tarefa
+    let clearButton = document.createElement('button')
+    clearButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+    clearButton.setAttribute('class', 'relative left-1')
+
+    // EventListener do botão de excluir a tarefa
+    clearButton.addEventListener('click', () => {
+        // Remove o pai do clearButton que foi clicado, ou seja, a task
+        main.removeChild(clearButton.parentElement)
+        // Se o input estiver desabilitado por estar no limite, habilita ele de novo, e remove o alerta de limite de tarefas
+        if (taskInput.disabled === true) {
+            taskInput.disabled = false
+            divTasksLimitAlert.removeChild(alert)
+        }
+    })
+
+    // taskText é o conteúdo da task, é onde vai ficar o texto dela
+    let taskText = document.createElement('p')
+    taskText.textContent = taskInput.value
+    // Abrevia o texto da task em 50 caracteres caso o tamanho do texto for maior do que 55 caracteres
+    if (taskText.textContent.length >= 55) taskText.textContent = taskText.textContent.slice(0, 51) + '...'
+    // Adiciona os elementos da task dentro dela
+    task.append(taskText, upArrow, downArrow, clearButton)
+    main.append(task)
+    // Reseta o valor do taskInput
+    taskInput.value = ''
+}
+
+
+// Outras funcionalidades
+
+// Div de alerta quando o timer chega a 0
+let timerAlertDiv = document.createElement('div');
+    // Título do alerta
+    let title = document.createElement('h1');
+    const okAlertButton = document.createElement('button');
+
+    timerAlertDiv.setAttribute('class', 'flex flex-col justify-center items-center gap-10 absolute w-[500px] h-38 p-3 z-50 border border-borderTimerAlertDark bg-timerAlertMainDark text-timerAlertTextDark')
+    title.setAttribute('class', 'text-2xl')
+    okAlertButton.setAttribute('class', 'text-1xl p-2')
+
+
+// Lógica do timer do Pomodoro
+// Declara a variável que será utilizada para definir e acabar o intervalo de tempo
 let interval
+// isRunning verifica se o timer está rodando. Será utilizada para sair do intervalo quando estiver em outros escopos
 let isRunning = false
-startPomodoroButton.addEventListener('click', () => {
-    if (startPomodoroButton.innerHTML.trim() === startSvg.trim()) {
+startPausePomodoroButton.addEventListener('click', () => {
+    // Se o botão clicado for o de começar o timer
+    if (startPausePomodoroButton.innerHTML.trim() === startSvg.trim()) {
+        // Se os inputs tiverem valores
         if (timerMinutes.value && timerSeconds.value) {
+            // Se os valores estiverem entre 1 e 60
             if (timerMinutes.value >= 0 && timerMinutes.value <= 60 && timerSeconds.value >= 0 && timerSeconds.value <= 60) {
-                if (timerSeconds.value === 60) timerSeconds.value = 59
-                startPomodoroButton.innerHTML = pauseSvg
+                // Muda o ícone para o de pausar o timer
+                startPausePomodoroButton.innerHTML = pauseSvg
                 isRunning = true
                 if (!interval) {
                     interval = setInterval(() => {
                         if (isRunning) {
                             timer()
-                            if (timerMinutes.value == 0 && timerSeconds.value == 0) {
-                                clearInterval(interval)
+                            // Se o timer estiver finalizado
+                            if (timerMinutes.value === 0 && timerSeconds.value === 0) {
+                                clearInterval(interval) // Acaba com o intervalo
                                 timerMinutes.value = 25 // Reinicia o timer
                                 interval = null // Limpa o ID para permitir reinício no futuro
-                                startPomodoroButton.innerHTML = startSvg
+                                startPausePomodoroButton.innerHTML = startSvg
                                 
-                                
-                                if (language === 'pt-BR') {
-                                    title.textContent = 'Timer acabado! Descanse um pouco...'
-                                } else {
-                                    title.textContent = 'Timer ended! Rest for a while...'
-                                }
+                                if (language === 'pt-BR') title.textContent = 'Timer acabado! Descanse um pouco...' // Tìtulo do alerta fica em PT-BR
+                                else title.textContent = 'Timer ended! Rest for a while...' // Título do alerta fica em Inglês
+
                                 okAlertButton.textContent = 'Ok'
-                                body.insertBefore(timerAlert, header)
-                                timerAlert.append(title, okAlertButton)
-                                okAlertButton.addEventListener('click', () => {body.removeChild(timerAlert)})
-                                const beep = new Audio('../sounds/beep.wav')
-                                let counter = 0
-                                beep.play()
+                                body.insertBefore(timerAlertDiv, header) // O alerta é inserido no início da página, no topo dela
+                                timerAlertDiv.append(title, okAlertButton) // Adiciona o condeúdo da div do alerta
+                                okAlertButton.addEventListener('click', () => {body.removeChild(timerAlertDiv)}) // Quando o botão de ok é clicado, o body remove o alerta
+                                const beep = new Audio('../sounds/beep.wav') // Toca o áudio de notificação
+                                let counter = 0 // Esse contador será utilizado para repetir o áudio 3 vezes
+                                beep.play() // Toca o som pela primeira vez
+                                // Define o intervalo de 2 segundos
                                 let beepInterval = setInterval(() => {
                                     beep.play()
                                     counter++
                                     if (counter === 2) clearInterval(beepInterval)
-                                    }, 2000);
+                                }, 2000);
                             }
                         }
                     }, 1000);
                 }
             }
-        } else {
+        } else { // Se algum dos valores do timer do Pomodoro estiver vazio, ele volta ambos para o padrão (25 minutos)
             timerMinutes.value = 25
             timerSeconds.value = '00'
         }
-    } else {
-        startPomodoroButton.innerHTML = startSvg
+    } else { // Se for o ícone de pausar ao invés de iniciar
+        startPausePomodoroButton.innerHTML = startSvg
         isRunning = false
         clearInterval(interval) // Cancela o intervalo
         interval = null // Limpa o ID para permitir reinício no futuro
     }
 });
 
-resetPomodoroButton.addEventListener('click', () => {
+
+resetPomodoroButton.addEventListener('click', () => { // Se o botão de reset for apertado
+    startPausePomodoroButton.innerHTML = startSvg // Muda o botão para o de iniciar o timer novamente
     timerMinutes.value = 25
     timerSeconds.value = '00'
     isRunning = false
     clearInterval(interval) // Cancela o intervalo
-    startPomodoroButton.innerHTML = startSvg
     interval = null // Limpa o ID para permitir reinício no futuro
 })
 
+
 function timer() {
-    if (timerSeconds.value != 0) {
-        timerSeconds.value--
-    }
-    else if (timerMinutes.value != 0 && timerSeconds.value == 0) {
+    // Se o valor dos segundos for diferente de 00, ele vai subtrair 1 do valor.
+    if (timerSeconds.value !== '00') timerSeconds.value--
+    /* 
+        Caso contrário, se o valor dos minutos for diferente de 0 e o valor dos segundos for igual à 00:
+        Ele vai REMOVER 1 caractere (detalhe: não vai subtrair, e sim transformar 00 em 0, pois é uma string).
+        Da próxima vez, o valor vai ser diferente de '00', e ele vai subtrair 1 do valor
+    */
+    else if (timerMinutes.value !== 0 && timerSeconds.value === '00') {
         timerMinutes.value--
-        timerSeconds.value = 59
+        timerSeconds.value = 59 // Reinicia os segundos, e tira 1 dos minutos
     }
-    if (timerMinutes.value.length === 1) {
-        timerMinutes.value = '0' + timerMinutes.value
-    }
-    if (timerSeconds.value.length === 1) timerSeconds.value = '0' + timerSeconds.value
+    if (timerMinutes.value.length === 1) timerMinutes.value = '0' + timerMinutes.value // Adiciona 0 no início dos minutos caso o valor de minutos tenha só 1 caractere
+    if (timerSeconds.value.length === 1) timerSeconds.value = '0' + timerSeconds.value // Adiciona 0 no início dos segundos caso o valor de segundos tenha só 1 caractere
 }
 
-// Lógica para adicionar os elementos na tela, criando assim uma lista
-// Para o botão de adicionar tarefa, usando o mouse
-addTaskButton.addEventListener('click', () => {
-    if (input.value.length >= 1) {
-        if (main.children.length < 10) {
-            addTask()
-            if (main.children.length === 10) addAlertAndDisableInput() 
-            } else addAlertAndDisableInput()
-    }
-})
-// Para a tecla Enter do teclado
-input.addEventListener("keydown", (event) => { if (input.value.length >= 1) if (event.key === 'Enter') {
-    if (main.children.length < 10) {
-        addTask()
-        if (main.children.length === 10) addAlertAndDisableInput() 
-        } else addAlertAndDisableInput()
-}
-})
 
-clearAllTasks.addEventListener('click', () => {
-    main.replaceChildren()
-    input.disabled = false
-    body.removeChild(divAlert)
-})
-
-lightDarkMode.addEventListener('click', () => {
-    if (lightDarkMode.innerHTML.trim() === sunSvg.trim()) {
-        lightDarkMode.innerHTML = moonSvg
-        body.classList.remove('bg-mainColorDark')
-        body.classList.remove('text-textColorDark')
-        
-        body.classList.add('bg-mainColorLight')
-        body.classList.add('text-textColorLight')
-        
-        input.classList.remove('bg-secondaryColorDark')
-        input.classList.add('bg-secondaryColorLight')
-        input.classList.add('placeholder-zinc-600')
-        
-        addTaskButton.classList.remove('bg-buttonColorDark')
-        addTaskButton.classList.add('bg-buttonColorLight')
-        addTaskButton.classList.add('text-black')
-        
-        dateDiv.classList.remove('bg-secondaryColorDark')
-        dateDiv.classList.add('bg-secondaryColorLight')
-        
-        timerAlert.classList.remove('bg-timerAlertMainDark')
-        timerAlert.classList.add('bg-timerAlertMainLight')
-        
-        timerAlert.classList.remove('border-timerAlertBorderDark')
-        timerAlert.classList.add('border-timerAlertBorderLight')
-
-        timerAlert.classList.remove('text-timerAlertTextDark')
-        timerAlert.classList.add('text-timerAlertTextLight')
-
-        line.classList.add('border-black')
-
-        aside.classList.remove('bg-secondaryColorDark')
-        aside.classList.add('bg-secondaryColorLight')
-
-        divPomodoroTitle.classList.remove('text-zinc-300')
-        divPomodoroTitle.classList.add('text-zinc-700')
-
-        divPomodoroTimer.classList.add('text-black')
-    } else {
-        lightDarkMode.innerHTML = sunSvg
-        body.classList.remove('bg-mainColorLight')
-        body.classList.remove('text-textColorLight')
-        
-        body.classList.add('bg-mainColorDark')
-        body.classList.add('text-textColorDark')
-        
-        input.classList.remove('bg-secondaryColorLight')
-        input.classList.add('bg-secondaryColorDark')
-        
-        addTaskButton.classList.remove('bg-buttonColorLight')
-        addTaskButton.classList.remove('text-black')
-        addTaskButton.classList.add('bg-buttonColorDark')
-        
-        dateDiv.classList.remove('bg-secondaryColorLight')
-        dateDiv.classList.add('bg-secondaryColorDark')
-        
-        timerAlert.classList.remove('bg-timerAlertMainLight')
-        timerAlert.classList.add('bg-timerAlertMainDark')
-        
-        timerAlert.classList.remove('border-timerAlertBorderLight')
-        timerAlert.classList.add('border-timerAlertBorderDark')
-        
-        timerAlert.classList.remove('text-timerAlertTextLight')
-        timerAlert.classList.add('text-timerAlertTextDark')
-        
-        line.classList.remove('border-black')
-        
-        aside.classList.remove('bg-secondaryColorLight')
-        aside.classList.add('bg-secondaryColorDark')
-        
-        divPomodoroTitle.classList.remove('text-zinc-700')
-        divPomodoroTitle.classList.add('text-zinc-300')
-
-        divPomodoroTimer.classList.remove('text-black')
-    }
-})
-
-let divAlert = document.createElement('div')
-divAlert.setAttribute('class', 'flex justify-center items-center absolute top-[520px]')
-let alert = document.createElement('h3')
 // Função para adicionar o alerta e desabilitar o input
 function addAlertAndDisableInput () {
     alert.setAttribute('class', 'flex gap-2 text-red-500')
     if (language === 'pt-BR') alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alertPhrase">Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.</p>'
+    
     else alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alertPhrase">Limit of tasks reached. Please, complete other old tasks to be able to add more.</p>'
     
-    input.disabled = true
-    divAlert.append(alert)
-    body.append(divAlert)
+    taskInput.disabled = true
+    divTasksLimitAlert.append(alert)
+    body.append(divTasksLimitAlert)
 }
-
-// Função para criar a tarefa
-function addTask() {
-    let task = document.createElement('article')
-    task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl p-3 border bg-secondaryColor border-zinc-500')
-
-    let clearButton = document.createElement('button')
-    clearButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
-    clearButton.setAttribute('class', 'relative left-1')
-    clearButton.addEventListener('click', () => {
-        main.removeChild(clearButton.parentElement)
-        if (input.disabled === true) {
-            input.disabled = false
-            divAlert.removeChild(alert)
-        }
-    })
-
-    let upArrow = document.createElement('button')
-    upArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>'
-    
-    let downArrow = document.createElement('button')
-    downArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>'
-    
-    upArrow.addEventListener('click', () => {
-        let parent = upArrow.parentElement
-        let prevTask = parent.previousSibling
-        if (prevTask) main.insertBefore(task, prevTask)
-    })
-    
-    downArrow.addEventListener('click', () => {
-        let parent = downArrow.parentElement
-        let nextTask = parent.nextSibling
-        if (nextTask) main.insertBefore(nextTask, task)
-    })
-
-    let taskText = document.createElement('p')
-    taskText.textContent = input.value
-    if (taskText.textContent.length >= 55) taskText.textContent = taskText.textContent.slice(0, 51) + '...'
-    task.append(taskText, upArrow, downArrow, clearButton)
-    main.append(task)
-    input.value = ''
-}
-
 
 // Alterna o idioma ao clicar no botão
 langButton.addEventListener('click', () => {
@@ -326,7 +301,7 @@ function changeLanguage() {
         month.style.display = 'none'; // Oculta o mês
 
         // Muda o input
-        input.setAttribute('placeholder', 'Type your task here')
+        taskInput.setAttribute('placeholder', 'Type your task here')
         // Muda o título
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Discipline</strong> is doing what you hate to do, but nonetheless doing it like you love it.&CloseCurlyDoubleQuote; - Mike Tyson';
         addTaskButton.textContent = 'Add task'
@@ -336,22 +311,127 @@ function changeLanguage() {
             message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
         }
 
-        if (timerAlert) title.textContent = 'Timer ended! Rest for a while...'
+        if (timerAlertDiv) title.textContent = 'Timer ended! Rest for a while...'
     } else {
         // Exibe a data no formato "Day de Month"
         day.textContent = `${dayName} de`;
         month.textContent = monthName;
         month.style.display = 'block'; // Garante que o mês apareça
         
-        input.setAttribute('placeholder', 'Digite aqui sua tarefa')
+        taskInput.setAttribute('placeholder', 'Digite aqui sua tarefa')
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson';
         addTaskButton.textContent = 'Adicionar tarefa'
-
+        
         if (alert.textContent.length > 0) {
             let message = document.querySelector('#alertPhrase')
             message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
         }
 
-        if (timerAlert) title.textContent = 'Timer acabado! Descanse um pouco...'
+        if (timerAlertDiv) title.textContent = 'Timer acabado! Descanse um pouco...'
     }
 }
+
+// Lógica para mudar a cor de todos os elementos de acordo com o modo escuro e o modo claro
+lightDarkButton.addEventListener('click', () => {
+    // Se o usuário escolher ir pro modo claro
+    if (lightDarkButton.innerHTML.trim() === sunSvg.trim()) {
+        // Muda o ícone do botão
+        lightDarkButton.innerHTML = moonSvg
+
+        // Configurações do body
+        body.classList.remove('bg-mainColorDark')
+        body.classList.remove('text-textColorDark')
+        
+        body.classList.add('bg-mainColorLight')
+        body.classList.add('text-textColorLight')
+        
+        // Configurações do Line
+        line.classList.add('border-black')
+        
+        // Configurações do aside
+        aside.classList.remove('bg-secondaryColorDark')
+        aside.classList.add('bg-secondaryColorLight')
+
+        // Configurações do divPomodoroTitle e divPomodoroTimer
+        divPomodoroTitle.classList.remove('text-zinc-300')
+        divPomodoroTitle.classList.add('text-zinc-700')
+
+        divPomodoroTimer.classList.add('text-black')
+
+        // Configurações da timerAlertDiv
+        timerAlertDiv.classList.remove('bg-timerAlertMainDark')
+        timerAlertDiv.classList.add('bg-timerAlertMainLight')
+        
+        timerAlertDiv.classList.remove('border-timerAlertBorderDark')
+        timerAlertDiv.classList.add('border-timerAlertBorderLight')
+
+        timerAlertDiv.classList.remove('text-timerAlertTextDark')
+        timerAlertDiv.classList.add('text-timerAlertTextLight')
+
+        // Configurações da dateDiv
+        dateDiv.classList.remove('bg-secondaryColorDark')
+        dateDiv.classList.add('bg-secondaryColorLight')
+
+        // Configurações do taskInput
+        taskInput.classList.remove('bg-secondaryColorDark')
+        taskInput.classList.add('bg-secondaryColorLight')
+        taskInput.classList.add('placeholder-zinc-600')
+        
+        // Configurações do addTaskButton
+        addTaskButton.classList.remove('bg-buttonColorDark')
+        addTaskButton.classList.add('bg-buttonColorLight')
+        addTaskButton.classList.add('text-black')
+    } else { // Se o usuário escolher ir pro modo escuro
+        // Muda o ícone do botão
+        lightDarkButton.innerHTML = sunSvg
+
+        // Configurações do body
+        body.classList.remove('bg-mainColorLight')
+        body.classList.remove('text-textColorLight')
+        
+        body.classList.add('bg-mainColorDark')
+        body.classList.add('text-textColorDark')
+        
+        // Configurações da line
+        line.classList.remove('border-black')
+
+        // Configurações do aside
+        aside.classList.remove('bg-secondaryColorLight')
+        aside.classList.add('bg-secondaryColorDark')
+        
+        // Configurações da divPomodoroTitle e divPomodoroTimer
+        divPomodoroTitle.classList.remove('text-zinc-700')
+        divPomodoroTitle.classList.add('text-zinc-300')
+
+        divPomodoroTimer.classList.remove('text-black')
+        
+        // Configurações da timerAlertDiv
+        timerAlertDiv.classList.remove('bg-timerAlertMainLight')
+        timerAlertDiv.classList.add('bg-timerAlertMainDark')
+    
+        timerAlertDiv.classList.remove('border-timerAlertBorderLight')
+        timerAlertDiv.classList.add('border-timerAlertBorderDark')
+        
+        timerAlertDiv.classList.remove('text-timerAlertTextLight')
+        timerAlertDiv.classList.add('text-timerAlertTextDark')
+
+        // Configurações da dateDiv
+        dateDiv.classList.remove('bg-secondaryColorLight')
+        dateDiv.classList.add('bg-secondaryColorDark')
+
+        // Configurações do taskInput
+        taskInput.classList.remove('bg-secondaryColorLight')
+        taskInput.classList.add('bg-secondaryColorDark')
+        
+        // Configurações do addTaskButton
+        addTaskButton.classList.remove('bg-buttonColorLight')
+        addTaskButton.classList.remove('text-black')
+        addTaskButton.classList.add('bg-buttonColorDark')
+    }
+})
+
+// Div onde o alerta de limite de tarefas ficará
+let divTasksLimitAlert = document.createElement('div')
+divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[520px]')
+// Conteúdo da divTasksLimitAlert
+let alert = document.createElement('h3')
