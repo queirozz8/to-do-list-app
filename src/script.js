@@ -265,9 +265,11 @@ function timer() {
 // Função para adicionar o alerta e desabilitar o input
 function addAlertAndDisableInput () {
     alert.setAttribute('class', 'flex gap-2 text-red-500')
-    if (language === 'pt-BR') alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alertPhrase">Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.</p>'
+    // O alerta fica com o texto em português do Brasil
+    if (language === 'pt-BR') alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alert-phrase">Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.</p>'
     
-    else alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alertPhrase">Limit of tasks reached. Please, complete other old tasks to be able to add more.</p>'
+    // O alerta fica com o texto em inglês
+    else alert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> <p id="alert-phrase">Limit of tasks reached. Please, complete other old tasks to be able to add more.</p>'
     
     taskInput.disabled = true
     divTasksLimitAlert.append(alert)
@@ -281,14 +283,16 @@ langButton.addEventListener('click', () => {
 });
 
 
-// Atualiza a data no idioma escolhido
+// Atualiza todos os elementos do site no idioma escolhido
 function changeLanguage() {
     // Muda a data
     const dayName = date.getDate();
     monthName = new Intl.DateTimeFormat(language, { month: 'long' }).format(date);
     
+    // Connector será o sufixo do número do dia de hoje em inglês. Define se será vazio, com st, nd, rd ou th
     let connector = '';
     
+    // Se o idioma escolhido for o inglês
     if (language === 'en-US') {
         // Adiciona o sufixo no inglês
         if (dayName === 1 || dayName === 21 || dayName === 31) connector = 'st';
@@ -296,69 +300,81 @@ function changeLanguage() {
         else if (dayName === 3 || dayName === 23) connector = 'rd';
         else connector = 'th';
         
-        // Exibe a data no formato "Month Dayth"
+        // Exibe a data no formato "Month Dayth", o jeito padrão dos americanos
+        // O dia fica com o conteúdo do mês, para que o mês consiga vir antes do dia. Ex: October 16th
         day.textContent = `${monthName} ${dayName}${connector}`;
         month.style.display = 'none'; // Oculta o mês
 
-        // Muda o input
-        taskInput.setAttribute('placeholder', 'Type your task here')
-        // Muda o título
+        // Frase motivadora
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Discipline</strong> is doing what you hate to do, but nonetheless doing it like you love it.&CloseCurlyDoubleQuote; - Mike Tyson';
+
+        // Input de tarefas
+        taskInput.setAttribute('placeholder', 'Type your task here')
+        // Botão de adicionar tarefa
         addTaskButton.textContent = 'Add task'
-        // Muda o alerta de limite de tarefas atingido
-        if (alert.textContent.length > 0) {
-            let message = document.querySelector('#alertPhrase')
+        // Conteúdo do alerta de limite de tarefas atingido, caso ele exista
+        if (alert) {
+            // O id foi definido na criação do innerHTML do alert
+            let message = document.querySelector('#alert-phrase')
             message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
         }
 
+        // Título do "popup" de alerta de fim do timer
         if (timerAlertDiv) title.textContent = 'Timer ended! Rest for a while...'
-    } else {
-        // Exibe a data no formato "Day de Month"
+    } else { // Se o idioma escolhido for pt-BR
+        // Exibe a data no formato "Day de Month", o jeito padrão dos brasileiros
         day.textContent = `${dayName} de`;
         month.textContent = monthName;
         month.style.display = 'block'; // Garante que o mês apareça
-        
-        taskInput.setAttribute('placeholder', 'Digite aqui sua tarefa')
+
+        // Frase motivadora
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson';
-        addTaskButton.textContent = 'Adicionar tarefa'
         
-        if (alert.textContent.length > 0) {
-            let message = document.querySelector('#alertPhrase')
+        // Placeholder do input de tarefas
+        taskInput.setAttribute('placeholder', 'Digite aqui sua tarefa')
+        // Adicionar tarefa
+        addTaskButton.textContent = 'Adicionar tarefa'
+
+        // Conteúdo do alerta de limite de tarefas atingido, caso ele exista
+        if (alert) {
+            // O id foi definido na criação do innerHTML do alert
+            let message = document.querySelector('#alert-phrase')
             message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
         }
 
+        // Título do "popup" de alerta de fim do timer
         if (timerAlertDiv) title.textContent = 'Timer acabado! Descanse um pouco...'
     }
 }
 
 // Lógica para mudar a cor de todos os elementos de acordo com o modo escuro e o modo claro
 lightDarkButton.addEventListener('click', () => {
-    // Se o usuário escolher ir pro modo claro
+    // Se o usuário escolher ir para o tema claro
     if (lightDarkButton.innerHTML.trim() === sunSvg.trim()) {
-        // Muda o ícone do botão
+        // Ícone do botão de mudar tema
         lightDarkButton.innerHTML = moonSvg
 
-        // Configurações do body
+        // Body
         body.classList.remove('bg-mainColorDark')
         body.classList.remove('text-textColorDark')
         
         body.classList.add('bg-mainColorLight')
         body.classList.add('text-textColorLight')
         
-        // Configurações do Line
+        // Line
         line.classList.add('border-black')
         
-        // Configurações do aside
+        // Aside
         aside.classList.remove('bg-secondaryColorDark')
         aside.classList.add('bg-secondaryColorLight')
 
-        // Configurações do divPomodoroTitle e divPomodoroTimer
+        // DivPomodoroTitle e divPomodoroTimer
         divPomodoroTitle.classList.remove('text-zinc-300')
         divPomodoroTitle.classList.add('text-zinc-700')
 
         divPomodoroTimer.classList.add('text-black')
 
-        // Configurações da timerAlertDiv
+        // TimerAlertDiv
         timerAlertDiv.classList.remove('bg-timerAlertMainDark')
         timerAlertDiv.classList.add('bg-timerAlertMainLight')
         
@@ -368,44 +384,44 @@ lightDarkButton.addEventListener('click', () => {
         timerAlertDiv.classList.remove('text-timerAlertTextDark')
         timerAlertDiv.classList.add('text-timerAlertTextLight')
 
-        // Configurações da dateDiv
+        // DateDiv
         dateDiv.classList.remove('bg-secondaryColorDark')
         dateDiv.classList.add('bg-secondaryColorLight')
 
-        // Configurações do taskInput
+        // TaskInput
         taskInput.classList.remove('bg-secondaryColorDark')
         taskInput.classList.add('bg-secondaryColorLight')
         taskInput.classList.add('placeholder-zinc-600')
         
-        // Configurações do addTaskButton
+        // AddTaskButton
         addTaskButton.classList.remove('bg-buttonColorDark')
         addTaskButton.classList.add('bg-buttonColorLight')
         addTaskButton.classList.add('text-black')
-    } else { // Se o usuário escolher ir pro modo escuro
-        // Muda o ícone do botão
+    } else { // Se o usuário escolher ir para o tema escuro
+        // Ícone do botão de mudar tema
         lightDarkButton.innerHTML = sunSvg
 
-        // Configurações do body
+        // Body
         body.classList.remove('bg-mainColorLight')
         body.classList.remove('text-textColorLight')
         
         body.classList.add('bg-mainColorDark')
         body.classList.add('text-textColorDark')
         
-        // Configurações da line
+        // Line
         line.classList.remove('border-black')
 
-        // Configurações do aside
+        // Aside
         aside.classList.remove('bg-secondaryColorLight')
         aside.classList.add('bg-secondaryColorDark')
         
-        // Configurações da divPomodoroTitle e divPomodoroTimer
+        // DivPomodoroTitle e divPomodoroTimer
         divPomodoroTitle.classList.remove('text-zinc-700')
         divPomodoroTitle.classList.add('text-zinc-300')
 
         divPomodoroTimer.classList.remove('text-black')
         
-        // Configurações da timerAlertDiv
+        // TimerAlertDiv
         timerAlertDiv.classList.remove('bg-timerAlertMainLight')
         timerAlertDiv.classList.add('bg-timerAlertMainDark')
     
@@ -415,15 +431,15 @@ lightDarkButton.addEventListener('click', () => {
         timerAlertDiv.classList.remove('text-timerAlertTextLight')
         timerAlertDiv.classList.add('text-timerAlertTextDark')
 
-        // Configurações da dateDiv
+        // DateDiv
         dateDiv.classList.remove('bg-secondaryColorLight')
         dateDiv.classList.add('bg-secondaryColorDark')
 
-        // Configurações do taskInput
+        // TaskInput
         taskInput.classList.remove('bg-secondaryColorLight')
         taskInput.classList.add('bg-secondaryColorDark')
         
-        // Configurações do addTaskButton
+        // AddTaskButton
         addTaskButton.classList.remove('bg-buttonColorLight')
         addTaskButton.classList.remove('text-black')
         addTaskButton.classList.add('bg-buttonColorDark')
@@ -433,5 +449,5 @@ lightDarkButton.addEventListener('click', () => {
 // Div onde o alerta de limite de tarefas ficará
 let divTasksLimitAlert = document.createElement('div')
 divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[520px]')
-// Conteúdo da divTasksLimitAlert
+// Conteúdo da divTasksLimitAlert, que é o próprio alert
 let alert = document.createElement('h3')
