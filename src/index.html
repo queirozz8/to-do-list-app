@@ -19,21 +19,26 @@
             <!-- Timer de Pomodoro -->
             <aside class="border w-96 h-52 rounded-xl bg-secondaryColorDark border-zinc-500">
                 <!-- Div de título do Timer de Pomodoro -->
-                <div class="flex justify-center items-center gap-1 relative top-3 text-zinc-300 text-2xl" id="title-pomodoro">
+                <div class="flex justify-center items-center gap-1 relative top-3 text-2xl text-zinc-300" id="title-pomodoro">
+                    <!-- Ícone do Pomodoro -->
                     <svg class="flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/>
                     </svg>
-                    Pomodoro
+                    <p>Pomodoro</p>
                 </div>
                 
-                <!-- Div do tempo -->
+                <!-- Div dos minutos e segundos -->
                 <div class="flex justify-center items-center relative top-10" id="pomodoro-timer-div">
-                    <input type="number" class="relative right-[10px] w-[68px] pl-2 z-10 focus:outline-none focus:ring-2 text-5xl bg-transparent" value="25" maxlength="2" id="pomodoro-minutes">
-                    <p class="text-4xl inline">:</p>
-                    <input type="number" class="relative left-[10px] w-[68px] pl-2 z-10 focus:outline-none focus:ring-2 text-5xl bg-transparent" value="00" maxlength="2" id="pomodoro-seconds">
+                    <!-- Input dos minutos -->
+                    <input class="relative right-[10px] w-[68px] pl-2 z-10 focus:outline-none focus:ring-2 text-5xl bg-transparent" type="number" value="25" maxlength="2" id="pomodoro-minutes">
+
+                    <p class="text-4xl inline">:</p> <!-- Dois pontos para separar -->
+
+                    <!-- Input dos segundos -->
+                    <input class="relative left-[10px] w-[68px] pl-2 z-10 focus:outline-none focus:ring-2 text-5xl bg-transparent" type="number" value="00" maxlength="2" id="pomodoro-seconds">
                 </div>
                 
                 <!-- Div dos botões do Pomodoro -->
-                <div class="flex justify-center items-center gap-10 h-48 relative bottom-5" id="div-pomodoro-button">
+                <div class="flex justify-center items-center gap-10 relative bottom-5 h-48" id="div-pomodoro-button">
                     <!-- Botão de iniciar timer -->
                     <button id="start-pause-pomodoro">
                         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#808189" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
@@ -54,16 +59,14 @@
 
             <!-- Botão de modo claro e escuro -->
             <button id="light-dark-mode">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
             </button>
-
         </div>
         <!-- Div da data de hoje -->
         <div class="flex flex-col justify-center items-center text-center relative bottom-20 w-48 h-28 border rounded-xl bg-secondaryColorDark border-zinc-500" id="date-div"></div>
 
-
         <!-- Frase motivadora -->
-        <h1 class="relative bottom-20 text-3xl font-bold" id="phrase">&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson</h1>
+        <h1 class="relative bottom-20 text-3xl font-bold" id="phrase">&OpenCurlyDoubleQuote;<strong class="inline text-4xl font-extrabold">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson</h1>
     </header>
 
     <!-- Parte de adicionar tarefas -->
@@ -72,17 +75,16 @@
         <input class="w-[50rem] h-10 relative pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" aria-label="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input">
 
         <!-- Botão de adicionar tarefa -->
-        <button class="p-2 border border-zinc-400 rounded-xl bg-buttonColorDark" id="add-task-button">Adicionar tarefa</button>
+        <button class="p-2 border rounded-xl bg-buttonColorDark border-zinc-400" id="add-task-button">Adicionar tarefa</button>
         
         <!-- Botão de remover todas as tarefas de uma vez -->
-        <button class="" id="clear-all-tasks">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+        <button id="clear-all-tasks">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
         </button>
     </div>
 
-
     <!-- Área onde as tarefas adicionadas ficam -->
-    <main class="flex flex-col flex-wrap justify-center items-center absolute bottom-[70px] gap-3 h-80"></main>
+    <main class="flex flex-col flex-wrap justify-center items-center gap-3 absolute bottom-[70px] h-80"></main>
     <script src="script.js"></script>
 </body>
 </html>
