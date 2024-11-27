@@ -22,7 +22,11 @@ module.exports = {
       fontFamily: {
         'sans': ['Work Sans', 'Arial', 'Helvetica', 'Sans-serif']
       },
-    },  
+      screens: {
+        'md': '900px',
+        'lg': '1500px'
+      }
+    },
   },
   plugins: [],
 }
