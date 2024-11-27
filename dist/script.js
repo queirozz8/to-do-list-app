@@ -103,7 +103,7 @@ taskInput.addEventListener("keydown", (event) => { if (event.key === 'Enter') {
 clearAllTasks.addEventListener('click', () => {
     main.replaceChildren() // Substitui todas as tarefas por nada
     taskInput.disabled = false
-    body.removeChild(divTasksLimitAlert) // Se houver o aviso do limite de tarefas, ele é removido também
+    if (body.contains(divTasksLimitAlert)) body.removeChild(divTasksLimitAlert) // Se houver o aviso do limite de tarefas, ele é removido também
 })
 
 
