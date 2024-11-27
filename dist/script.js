@@ -83,7 +83,7 @@ const main = document.querySelector('main');
 
 // Para o botão de adicionar tarefa, usando o mouse
 addTaskButton.addEventListener('click', () => {
-    if (taskInput.value.length >= 1 && main.children.length > 10) {
+    if (taskInput.value.length >= 1 && main.children.length < 10) {
         addTask()
         if (main.children.length === 10) addAlertAndDisableInput() // Se após adicionar, a quantidade de tarefas for igual a 10, executa a função
     } else if (main.children.length > 10) addAlertAndDisableInput()
