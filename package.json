@@ -3,7 +3,6 @@
     "tailwindcss": "^3.4.15"
   },
   "scripts": {
-    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "build": "npm run build:css && cp src/index.html dist/ && cp src/script.js dist/"
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
   }
 }
