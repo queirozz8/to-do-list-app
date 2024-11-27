@@ -195,7 +195,7 @@ startPausePomodoroButton.addEventListener('click', () => {
                         if (isRunning) {
                             timer()
                             // Se o timer estiver finalizado
-                            if (timerMinutes.value === 0 && timerSeconds.value === 0) {
+                            if (timerMinutes.value === '00' && timerSeconds.value === '00') {
                                 clearInterval(interval) // Acaba com o intervalo
                                 timerMinutes.value = 25 // Reinicia o timer
                                 interval = null // Limpa o ID para permitir reinício no futuro
@@ -394,8 +394,8 @@ lightDarkButton.addEventListener('click', () => {
         taskInput.classList.add('placeholder-zinc-600')
         
         // AddTaskButton
-        addTaskButton.classList.remove('bg-buttonColorDark')
-        addTaskButton.classList.add('bg-buttonColorLight')
+        addTaskButton.classList.remove('bg-addTaskButtonColorDark')
+        addTaskButton.classList.add('bg-addTaskButtonColorLight')
         addTaskButton.classList.add('text-black')
     } else { // Se o usuário escolher ir para o tema escuro
         // Ícone do botão de mudar tema
@@ -440,9 +440,9 @@ lightDarkButton.addEventListener('click', () => {
         taskInput.classList.add('bg-secondaryColorDark')
         
         // AddTaskButton
-        addTaskButton.classList.remove('bg-buttonColorLight')
+        addTaskButton.classList.remove('bg-addTaskButtonColorLight')
         addTaskButton.classList.remove('text-black')
-        addTaskButton.classList.add('bg-buttonColorDark')
+        addTaskButton.classList.add('bg-addTaskButtonColorDark')
     }
 })
 
