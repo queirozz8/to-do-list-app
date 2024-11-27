@@ -3,6 +3,6 @@
     "tailwindcss": "^3.4.15"
   },
   "scripts": {
-    "build": "mkdir -p dist && tailwindcss -i ./src/input.css -o ./dist/output.css --minify && cp ./src/index.html ./dist/"
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify --watch"
   }
 }
