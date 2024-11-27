@@ -208,7 +208,7 @@ startPausePomodoroButton.addEventListener('click', () => {
                                 body.insertBefore(timerAlertDiv, header) // O alerta é inserido no início da página, no topo dela
                                 timerAlertDiv.append(title, okAlertButton) // Adiciona o condeúdo da div do alerta
                                 okAlertButton.addEventListener('click', () => {body.removeChild(timerAlertDiv)}) // Quando o botão de ok é clicado, o body remove o alerta
-                                const beep = new Audio('../sounds/beep.wav') // Toca o áudio de notificação
+                                const beep = new Audio('./sounds/beep.wav') // Toca o áudio de notificação
                                 let counter = 0 // Esse contador será utilizado para repetir o áudio 3 vezes
                                 beep.play() // Toca o som pela primeira vez
                                 // Define o intervalo de 2 segundos
