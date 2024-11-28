@@ -318,7 +318,7 @@ function changeLanguage() {
         if (alert) {
             // O id foi definido na criação do innerHTML do alert
             let message = document.querySelector('#alert-phrase')
-            message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
+            if (message) message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
         }
         
         // Título do "popup" de alerta de fim do timer
@@ -341,7 +341,7 @@ function changeLanguage() {
         if (alert) {
             // O id foi definido na criação do innerHTML do alert
             let message = document.querySelector('#alert-phrase')
-            message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
+            if (message) message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
         }
         
         // Título do "popup" de alerta de fim do timer
