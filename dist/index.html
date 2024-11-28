@@ -12,11 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body 
-class="flex flex-col items-center relative md:bg-pink-600 md:top-20 lg:top-16 lg:bg-blue-500 w-screen h-screen overflow-hidden text-textColorDark bg-mainColorDark">
-    <header class="flex flex-col justify-center items-center gap-8 relative bottom-48 w-full h-full">
+<body class="lg:flex lg:flex-col items-center relative md:top-2 lg:top-16 md:bg-pink-500 lg:bg-blue-400 w-screen h-screen overflow-hidden text-textColorDark bg-mainColorDark">
+    <header class="flex flex-col justify-center items-center gap-8 relative md:-top-20 lg:-top-52 bottom-48 w-full h-full">
         <!-- Título do site -->
-        <h1 class="text-4xl font-bold">To-do List</h1>
+        <h1 class="md:text-3xl lg:text-4xl font-bold">To-do List</h1>
 
         <!-- Linha horizontal que separa o título do site em si -->
         <div class="w-[700px] border" id="line"></div>
@@ -24,7 +23,7 @@ class="flex flex-col items-center relative md:bg-pink-600 md:top-20 lg:top-16 lg
         <!-- Div das funções extras -->
         <div class="flex items-center gap-16">
             <!-- Timer de Pomodoro -->
-            <aside class="border w-96 h-52 rounded-xl bg-secondaryColorDark border-zinc-500">
+            <aside class="md:w-72 md:h-[200px] lg:w-96 lg:h-52 border rounded-xl bg-secondaryColorDark border-zinc-500">
                 <!-- Div de título do Timer de Pomodoro -->
                 <div class="flex justify-center items-center gap-1 relative top-3 text-2xl text-zinc-300" id="title-pomodoro">
                     <!-- Ícone do Pomodoro -->
@@ -77,9 +76,9 @@ class="flex flex-col items-center relative md:bg-pink-600 md:top-20 lg:top-16 lg
     </header>
 
     <!-- Parte de adicionar tarefas -->
-    <div class="flex justify-center items-center gap-2 relative bottom-[430px]">
+    <div class="flex justify-center items-center gap-2 relative md:bottom-[280px] lg:bottom-[430px]">
         <!-- Input de adicionar tarefa -->
-        <input class="w-[50rem] h-10 relative pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" aria-label="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input">
+        <input class="w-[50rem] h-10 pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" aria-label="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input">
 
         <!-- Botão de adicionar tarefa -->
         <button class="p-2 border rounded-xl bg-addTaskButtonColorDark border-zinc-400" id="add-task-button">Adicionar tarefa</button>
