@@ -103,7 +103,11 @@ taskInput.addEventListener("keydown", (event) => { if (event.key === 'Enter') {
 clearAllTasks.addEventListener('click', () => {
     main.replaceChildren() // Substitui todas as tarefas por nada
     taskInput.disabled = false
-    if (body.contains(divTasksLimitAlert)) body.removeChild(divTasksLimitAlert) // Se houver o aviso do limite de tarefas, ele é removido também
+    if (body.contains(divTasksLimitAlert)) divTasksLimitAlert.removeChild(alert) // Se houver o aviso do limite de tarefas, ele é removido 
+    /*
+        Isso remove o alert do divTasksLimitAlert, mas não destrói o objeto alert. A variável alert ainda mantém a referência para o elemento h3 criado inicialmente.
+        Isso permite com que podemos adicionar de novo o alert na divTasksLimitAlert.
+    */
 })
 
 
@@ -125,30 +129,28 @@ function addTask() {
         let prevTask = task.previousSibling
         // Se existir um elemento anterior (prevTask) ao atual, então adicionamos a task atual antes do anterior
         if (prevTask) main.insertBefore(task, prevTask)
-    })
+        })
     
     // EventListener do downArrow
     downArrow.addEventListener('click', () => {
         let nextTask = task.nextSibling
         if (nextTask) main.insertBefore(nextTask, task)
-    })
+        })
     
     // Botão de excluir a tarefa
     let clearButton = document.createElement('button')
     clearButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
     clearButton.setAttribute('class', 'relative left-1')
-
+    
     // EventListener do botão de excluir a tarefa
     clearButton.addEventListener('click', () => {
         // Remove o pai do clearButton que foi clicado, ou seja, a task
         main.removeChild(clearButton.parentElement)
         // Se o input estiver desabilitado por estar no limite, habilita ele de novo, e remove o alerta de limite de tarefas
-        if (taskInput.disabled === true) {
-            taskInput.disabled = false
-            divTasksLimitAlert.removeChild(alert)
-        }
+        taskInput.disabled = false
+        body.removeChild(divTasksLimitAlert)
     })
-
+    
     // taskText é o conteúdo da task, é onde vai ficar o texto dela
     let taskText = document.createElement('p')
     taskText.textContent = taskInput.value
@@ -169,14 +171,14 @@ let timerAlertDiv = document.createElement('div');
     // Título do alerta
     let title = document.createElement('h1');
     const okAlertButton = document.createElement('button');
-
+    
     timerAlertDiv.setAttribute('class', 'flex flex-col justify-center items-center gap-10 absolute w-[500px] h-38 p-3 z-50 border border-borderTimerAlertDark bg-timerAlertMainDark text-timerAlertTextDark')
     title.setAttribute('class', 'text-2xl')
     okAlertButton.setAttribute('class', 'text-1xl p-2')
-
-
-// Lógica do timer do Pomodoro
-// Declara a variável que será utilizada para definir e acabar o intervalo de tempo
+    
+    
+    // Lógica do timer do Pomodoro
+    // Declara a variável que será utilizada para definir e acabar o intervalo de tempo
 let interval
 // isRunning verifica se o timer está rodando. Será utilizada para sair do intervalo quando estiver em outros escopos
 let isRunning = false
@@ -203,7 +205,7 @@ startPausePomodoroButton.addEventListener('click', () => {
                                 
                                 if (language === 'pt-BR') title.textContent = 'Timer acabado! Descanse um pouco...' // Tìtulo do alerta fica em PT-BR
                                 else title.textContent = 'Timer ended! Rest for a while...' // Título do alerta fica em Inglês
-
+                                
                                 okAlertButton.textContent = 'Ok'
                                 body.insertBefore(timerAlertDiv, header) // O alerta é inserido no início da página, no topo dela
                                 timerAlertDiv.append(title, okAlertButton) // Adiciona o condeúdo da div do alerta
@@ -216,7 +218,7 @@ startPausePomodoroButton.addEventListener('click', () => {
                                     beep.play()
                                     counter++
                                     if (counter === 2) clearInterval(beepInterval)
-                                }, 2000);
+                                    }, 2000);
                             }
                         }
                     }, 1000);
@@ -249,13 +251,13 @@ function timer() {
     // Se o valor dos segundos for diferente de 00, ele vai subtrair 1 do valor.
     if (timerSeconds.value !== '00') timerSeconds.value--
     /* 
-        Caso contrário, se o valor dos minutos for diferente de 0 e o valor dos segundos for igual à 00:
-        Ele vai REMOVER 1 caractere (detalhe: não vai subtrair, e sim transformar 00 em 0, pois é uma string).
-        Da próxima vez, o valor vai ser diferente de '00', e ele vai subtrair 1 do valor
+    Caso contrário, se o valor dos minutos for diferente de 0 e o valor dos segundos for igual à 00:
+    Ele vai REMOVER 1 caractere (detalhe: não vai subtrair, e sim transformar 00 em 0, pois é uma string).
+    Da próxima vez, o valor vai ser diferente de '00', e ele vai subtrair 1 do valor
     */
-    else if (timerMinutes.value !== 0 && timerSeconds.value === '00') {
-        timerMinutes.value--
-        timerSeconds.value = 59 // Reinicia os segundos, e tira 1 dos minutos
+   else if (timerMinutes.value !== 0 && timerSeconds.value === '00') {
+       timerMinutes.value--
+       timerSeconds.value = 59 // Reinicia os segundos, e tira 1 dos minutos
     }
     if (timerMinutes.value.length === 1) timerMinutes.value = '0' + timerMinutes.value // Adiciona 0 no início dos minutos caso o valor de minutos tenha só 1 caractere
     if (timerSeconds.value.length === 1) timerSeconds.value = '0' + timerSeconds.value // Adiciona 0 no início dos segundos caso o valor de segundos tenha só 1 caractere
@@ -304,10 +306,10 @@ function changeLanguage() {
         // O dia fica com o conteúdo do mês, para que o mês consiga vir antes do dia. Ex: October 16th
         day.textContent = `${monthName} ${dayName}${connector}`;
         month.style.display = 'none'; // Oculta o mês
-
+        
         // Frase motivadora
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Discipline</strong> is doing what you hate to do, but nonetheless doing it like you love it.&CloseCurlyDoubleQuote; - Mike Tyson';
-
+        
         // Input de tarefas
         taskInput.setAttribute('placeholder', 'Type your task here')
         // Botão de adicionar tarefa
@@ -318,7 +320,7 @@ function changeLanguage() {
             let message = document.querySelector('#alert-phrase')
             message.textContent = 'Limit of tasks reached. Please, complete other old tasks to be able to add more.'
         }
-
+        
         // Título do "popup" de alerta de fim do timer
         if (timerAlertDiv) title.textContent = 'Timer ended! Rest for a while...'
     } else { // Se o idioma escolhido for pt-BR
@@ -326,7 +328,7 @@ function changeLanguage() {
         day.textContent = `${dayName} de`;
         month.textContent = monthName;
         month.style.display = 'block'; // Garante que o mês apareça
-
+        
         // Frase motivadora
         phrase.innerHTML = '&OpenCurlyDoubleQuote;<strong class="text-4xl font-extrabold inline">Disciplina</strong> é fazer o que não gosta como se você amasse fazer isso.&CloseCurlyDoubleQuote; - Mike Tyson';
         
@@ -334,14 +336,14 @@ function changeLanguage() {
         taskInput.setAttribute('placeholder', 'Digite aqui sua tarefa')
         // Adicionar tarefa
         addTaskButton.textContent = 'Adicionar tarefa'
-
+        
         // Conteúdo do alerta de limite de tarefas atingido, caso ele exista
         if (alert) {
             // O id foi definido na criação do innerHTML do alert
             let message = document.querySelector('#alert-phrase')
             message.textContent = 'Limite de tarefas atingido. Por favor, cumpra tarefas antigas para poder adicionar mais.' 
         }
-
+        
         // Título do "popup" de alerta de fim do timer
         if (timerAlertDiv) title.textContent = 'Timer acabado! Descanse um pouco...'
     }
@@ -353,7 +355,7 @@ lightDarkButton.addEventListener('click', () => {
     if (lightDarkButton.innerHTML.trim() === sunSvg.trim()) {
         // Ícone do botão de mudar tema
         lightDarkButton.innerHTML = moonSvg
-
+        
         // Body
         body.classList.remove('bg-mainColorDark')
         body.classList.remove('text-textColorDark')
@@ -367,27 +369,27 @@ lightDarkButton.addEventListener('click', () => {
         // Aside
         aside.classList.remove('bg-secondaryColorDark')
         aside.classList.add('bg-secondaryColorLight')
-
+        
         // DivPomodoroTitle e divPomodoroTimer
         divPomodoroTitle.classList.remove('text-zinc-300')
         divPomodoroTitle.classList.add('text-zinc-700')
-
+        
         divPomodoroTimer.classList.add('text-black')
-
+        
         // TimerAlertDiv
         timerAlertDiv.classList.remove('bg-timerAlertMainDark')
         timerAlertDiv.classList.add('bg-timerAlertMainLight')
         
         timerAlertDiv.classList.remove('border-timerAlertBorderDark')
         timerAlertDiv.classList.add('border-timerAlertBorderLight')
-
+        
         timerAlertDiv.classList.remove('text-timerAlertTextDark')
         timerAlertDiv.classList.add('text-timerAlertTextLight')
-
+        
         // DateDiv
         dateDiv.classList.remove('bg-secondaryColorDark')
         dateDiv.classList.add('bg-secondaryColorLight')
-
+        
         // TaskInput
         taskInput.classList.remove('bg-secondaryColorDark')
         taskInput.classList.add('bg-secondaryColorLight')
@@ -400,7 +402,7 @@ lightDarkButton.addEventListener('click', () => {
     } else { // Se o usuário escolher ir para o tema escuro
         // Ícone do botão de mudar tema
         lightDarkButton.innerHTML = sunSvg
-
+        
         // Body
         body.classList.remove('bg-mainColorLight')
         body.classList.remove('text-textColorLight')
@@ -410,7 +412,7 @@ lightDarkButton.addEventListener('click', () => {
         
         // Line
         line.classList.remove('border-black')
-
+        
         // Aside
         aside.classList.remove('bg-secondaryColorLight')
         aside.classList.add('bg-secondaryColorDark')
@@ -418,23 +420,23 @@ lightDarkButton.addEventListener('click', () => {
         // DivPomodoroTitle e divPomodoroTimer
         divPomodoroTitle.classList.remove('text-zinc-700')
         divPomodoroTitle.classList.add('text-zinc-300')
-
+        
         divPomodoroTimer.classList.remove('text-black')
         
         // TimerAlertDiv
         timerAlertDiv.classList.remove('bg-timerAlertMainLight')
         timerAlertDiv.classList.add('bg-timerAlertMainDark')
-    
+        
         timerAlertDiv.classList.remove('border-timerAlertBorderLight')
         timerAlertDiv.classList.add('border-timerAlertBorderDark')
         
         timerAlertDiv.classList.remove('text-timerAlertTextLight')
         timerAlertDiv.classList.add('text-timerAlertTextDark')
-
+        
         // DateDiv
         dateDiv.classList.remove('bg-secondaryColorLight')
         dateDiv.classList.add('bg-secondaryColorDark')
-
+        
         // TaskInput
         taskInput.classList.remove('bg-secondaryColorLight')
         taskInput.classList.add('bg-secondaryColorDark')
@@ -448,6 +450,6 @@ lightDarkButton.addEventListener('click', () => {
 
 // Div onde o alerta de limite de tarefas ficará
 let divTasksLimitAlert = document.createElement('div')
-divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[520px]')
-// Conteúdo da divTasksLimitAlert, que é o próprio alert
+divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[512px]')
+// Conteúdo da divTasksLimitAlert, que é o alert
 let alert = document.createElement('h3')
