@@ -273,7 +273,7 @@ function addAlertAndDisableInput () {
     
     taskInput.disabled = true
     divTasksLimitAlert.append(alert)
-    body.append(divTasksLimitAlert)
+    body.insertBefore(divTasksLimitAlert, main)
 }
 
 // Alterna o idioma ao clicar no botão
