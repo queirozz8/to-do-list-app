@@ -450,6 +450,6 @@ lightDarkButton.addEventListener('click', () => {
 
 // Div onde o alerta de limite de tarefas ficará
 let divTasksLimitAlert = document.createElement('div')
-divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[512px]')
+divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center absolute top-[515px]')
 // Conteúdo da divTasksLimitAlert, que é o alert
 let alert = document.createElement('h3')
