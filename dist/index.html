@@ -23,14 +23,14 @@
         <h1 class="sm:text-4xl md:text-3xl lg:text-4xl font-bold">To-do List</h1>
 
         <!-- Linha horizontal que separa o título do site em si -->
-        <div class="w-[44rem] border" id="line"></div>
+        <div class="w-[35rem] sm:w-[44rem] border" id="line"></div>
 
-        <!-- Funções extras -->
-        <div class="flex justify-center items-center w-screen gap-8">
+        <!-- Funcionalidades extras -->
+        <div class="flex justify-center items-center w-screen gap-6 sm:gap-8">
             <!-- Pomodoro -->
-            <aside class="sm:w-72 md:w-96 md:h-52 lg:w-96 lg:h-52 border rounded-xl bg-secondaryColorDark border-zinc-500">
+            <aside class="w-fit h-fit relative left-7 sm:w-72 sm:h-auto sm:static md:w-96 md:h-52 border rounded-xl bg-secondaryColorDark border-zinc-500">
                 <!-- Título do Pomodoro -->
-                <div class="flex justify-center items-center gap-1 relative top-3 text-2xl text-zinc-300" id="title-pomodoro">
+                <div class="flex justify-center items-center gap-1 relative top-3 text-1xl sm:text-2xl text-zinc-300" id="title-pomodoro">
                     <!-- Ícone do Pomodoro -->
                     <svg class="flex justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/>
                     </svg>
@@ -83,7 +83,7 @@
     <!-- Adicionar tarefas -->
     <div class="flex justify-center items-center gap-2 relative md:bottom-16">
         <!-- Input de adicionar tarefa -->
-        <input class="sm:w-[35rem] md:w-[50rem] lg:w-[50rem] h-10 pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input" aria-label="Digite aqui sua tarefa">
+        <input class="sm:w-[35rem] md:w-[50rem] h-10 pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input" aria-label="Digite aqui sua tarefa">
 
         <!-- Botão de adicionar tarefa -->
         <button class="p-2 border rounded-xl bg-addTaskButtonColorDark border-zinc-400" id="add-task-button" aria-label="Adicionar tarefa">Adicionar tarefa</button>
