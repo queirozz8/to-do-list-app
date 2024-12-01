@@ -99,7 +99,7 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
     
     function addTask() {
         let task = document.createElement('article')
-        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl sm:p-2 lg:p-3 border bg-secondaryColor border-zinc-500')
+        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl p-2 lg:p-3 border bg-secondaryColor border-zinc-500')
         
         // Botão para subir a tarefa na lista
         let upArrow = document.createElement('button')
@@ -424,6 +424,6 @@ lightDarkButton.addEventListener('click', () => {
 })
 
 let divTasksLimitAlert = document.createElement('div')
-divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center relative bottom-12 h-[1px]')
+divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center relative bottom-14 sm:bottom-12 h-[1px]')
 
 let alert = document.createElement('h3')
