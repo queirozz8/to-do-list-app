@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body class="lg:flex lg:flex-col justify-center items-center w-screen overflow-y-auto overflow-x-hidden text-textColorDark bg-mainColorDark">
+<body class="lg:flex lg:flex-col justify-center items-center w-screen text-textColorDark bg-mainColorDark overflow-y-auto overflow-x-hidden">
     <p class="flex justify-center items-center gap-2 lg:hidden text-[1rem] text-red-500" id="display-alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>
         </svg>
@@ -20,7 +20,7 @@
     </p>
     <header class="flex flex-col justify-start items-center mt-4 gap-8 w-full h-fit">
         <!-- Título do site -->
-        <h1 class="lg:text-4xl md:text-3xl sm:text-4xl font-bold">To-do List</h1>
+        <h1 class="sm:text-4xl md:text-3xl lg:text-4xl font-bold">To-do List</h1>
 
         <!-- Linha horizontal que separa o título do site em si -->
         <div class="w-[44rem] border" id="line"></div>
@@ -83,7 +83,7 @@
     <!-- Adicionar tarefas -->
     <div class="flex justify-center items-center gap-2 relative md:bottom-16">
         <!-- Input de adicionar tarefa -->
-        <input class="lg:w-[50rem] md:w-[50rem] sm:w-[35rem] h-10 pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input" aria-label="Digite aqui sua tarefa">
+        <input class="sm:w-[35rem] md:w-[50rem] lg:w-[50rem] h-10 pl-2 border rounded-xl bg-secondaryColorDark border-zinc-500 placeholder-zinc-600" type="text" placeholder="Digite aqui sua tarefa" minlength="1" maxlength="65" id="task-input" aria-label="Digite aqui sua tarefa">
 
         <!-- Botão de adicionar tarefa -->
         <button class="p-2 border rounded-xl bg-addTaskButtonColorDark border-zinc-400" id="add-task-button" aria-label="Adicionar tarefa">Adicionar tarefa</button>
