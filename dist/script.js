@@ -270,7 +270,7 @@ function changeLanguage() {
         else if (dayName === 3 || dayName === 23) connector = 'rd';
         else connector = 'th';
         
-        if (displayAlert) displayAlert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Your device has a too small screen, the website may look a little strange. It is recommendable that you acess this website on a computer with at least 1400px of resolution.'
+        if (displayAlert) displayAlert.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Your device has a too small screen, the website may look a little strange. It is recommendable that you access this website on a computer with at least 1400px of resolution.'
         
         startPausePomodoroButton.setAttribute('title', 'Start/pause timer')
         resetPomodoroButton.setAttribute('title', 'Reset timer')
