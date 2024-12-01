@@ -99,7 +99,7 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
     
     function addTask() {
         let task = document.createElement('article')
-        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl lg:p-3 sm:p-2 border bg-secondaryColor border-zinc-500')
+        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl sm:p-2 lg:p-3 border bg-secondaryColor border-zinc-500')
         
         // Botão para subir a tarefa na lista
         let upArrow = document.createElement('button')
@@ -147,7 +147,7 @@ let timerAlertDiv = document.createElement('div');
 let title = document.createElement('h1');
 const okAlertButton = document.createElement('button');
 
-timerAlertDiv.setAttribute('class', 'flex flex-col justify-center items-center gap-10 fixed lg:w-[31rem] md:w-[25rem] md:absolute md:left-[31rem] h-38 p-3 z-50 border border-borderTimerAlertDark bg-timerAlertMainDark text-timerAlertTextDark')
+timerAlertDiv.setAttribute('class', 'flex flex-col justify-center items-center gap-10 fixed md:w-[25rem] md:absolute md:left-[31rem] lg:w-[31rem] h-38 p-3 z-50 border border-borderTimerAlertDark bg-timerAlertMainDark text-timerAlertTextDark')
 title.setAttribute('class', 'text-2xl')
 okAlertButton.setAttribute('class', 'text-1xl p-2')
 
