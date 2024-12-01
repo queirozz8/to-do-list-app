@@ -424,6 +424,6 @@ lightDarkButton.addEventListener('click', () => {
 })
 
 let divTasksLimitAlert = document.createElement('div')
-divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center relative bottom-20 sm:bottom-12 h-[1px]')
+divTasksLimitAlert.setAttribute('class', 'flex justify-center items-center relative bottom-20 sm:bottom-16 md:bottom-12 lg:bottom-10 h-[1px]')
 
 let alert = document.createElement('h3')
