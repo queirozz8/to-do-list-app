@@ -34,7 +34,7 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
     let lightDarkButton = document.querySelector('#light-dark-mode');
     // Svgs dos ícones do botão de modo claro e escuro
     const sunSvg = lightDarkButton.innerHTML;
-    const moonSvg = '<svg class="moon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    const moonSvg = '<svg class="moon-svg" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
     
     
     // Constructor da data, será por ele que os elementos de data pegarão a data de hoje
