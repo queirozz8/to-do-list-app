@@ -130,7 +130,7 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
         body.removeChild(divTasksLimitAlert)
     })
     
-    let taskText = document.createElement('span')
+    let taskText = document.createElement('p')
     taskText.textContent = taskInput.value
     let breakpoint = getBreakpoint()
     // Abrevia o texto da task em x caracteres caso o tamanho do texto for maior do que y caracteres
