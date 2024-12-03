@@ -173,7 +173,7 @@ startPausePomodoroButton.addEventListener('click', () => {
     // Se o botão for o de começar o timer
     if (startPausePomodoroButton.innerHTML.trim() === startSvg.trim()) {
         if (timerMinutes.value && timerSeconds.value) {
-            if (timerMinutes.value >= 0 && timerMinutes.value <= 60 && timerSeconds.value >= 0 && timerSeconds.value <= 60) {
+            if (timerMinutes.value >= 0 && timerSeconds.value >= 0 && timerSeconds.value <= 60) {
                 startPausePomodoroButton.innerHTML = pauseSvg
                 isRunning = true
                 if (!interval) {
