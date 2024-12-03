@@ -103,22 +103,22 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
         
         // Botão para subir a tarefa na lista
         let upArrow = document.createElement('button')
-        upArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>'
+        upArrow.innerHTML = '<svg class="hidden sm:inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg> <svg class="inline sm:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>'
         
         // Botão para descer a tarefa na lista
         let downArrow = document.createElement('button')
-        downArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>'
+        downArrow.innerHTML = '<svg class="hidden sm:inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg> <svg class="inline sm:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
         
         upArrow.addEventListener('click', () => {
             let prevTask = task.previousSibling
             // Se existir um elemento anterior (prevTask) ao atual, então adicionamos a task atual antes do anterior
             if (prevTask) main.insertBefore(task, prevTask)
-            })
+        })
         
         downArrow.addEventListener('click', () => {
             let nextTask = task.nextSibling
             if (nextTask) main.insertBefore(nextTask, task)
-            })
+        })
         let clearButton = document.createElement('button')
         clearButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
         clearButton.setAttribute('class', 'relative left-1')
