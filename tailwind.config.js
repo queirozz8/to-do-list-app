@@ -23,6 +23,7 @@ module.exports = {
         'sans': ['Work Sans', 'Arial', 'Helvetica', 'Sans-serif']
       },
       screens: {
+        'sm': '750px',
         'md': '900px',
         'lg': '1400px'
       }
