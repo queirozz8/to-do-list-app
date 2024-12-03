@@ -99,7 +99,7 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
     
     function addTask() {
         let task = document.createElement('article')
-        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 rounded rounded-2xl p-2 lg:p-3 border bg-secondaryColor border-zinc-500')
+        task.setAttribute('class', 'flex justify-center items-center text-center gap-3 flex-wrap p-2 lg:p-3 rounded rounded-2xl border bg-secondaryColor border-zinc-500')
         
         // Botão para subir a tarefa na lista
         let upArrow = document.createElement('button')
@@ -130,16 +130,29 @@ const pauseSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
         body.removeChild(divTasksLimitAlert)
     })
     
-    let taskText = document.createElement('p')
+    let taskText = document.createElement('span')
     taskText.textContent = taskInput.value
-    // Abrevia o texto da task em 50 caracteres caso o tamanho do texto for maior do que 55 caracteres
-    if (taskText.textContent.length >= 55) taskText.textContent = taskText.textContent.slice(0, 51) + '...'
+    let breakpoint = getBreakpoint()
+    // Abrevia o texto da task em x caracteres caso o tamanho do texto for maior do que y caracteres
+    if (breakpoint === 'mb') {
+        if (taskText.textContent.length >= 25) taskText.textContent = taskText.textContent.slice(0, 21) + '...'
+    } else if (breakpoint === 'sm') {
+        if (taskText.textContent.length >= 45) taskText.textContent = taskText.textContent.slice(0, 41) + '...'
+    } else if (breakpoint === 'md' || breakpoint === 'lg') {
+        if (taskText.textContent.length >= 55) taskText.textContent = taskText.textContent.slice(0, 51) + '...'
+    }
     task.append(taskText, upArrow, downArrow, clearButton)
     main.append(task)
     taskInput.value = ''
 }
 
-
+function getBreakpoint() {
+    let breakpoint = window.innerWidth
+    if (breakpoint < 700) return 'mb'
+    if (breakpoint >= 700 && breakpoint < 900) return 'sm'
+    if (breakpoint >= 900 && breakpoint < 1400) return 'md'
+    if (breakpoint >= 1400) return 'lg'
+}
 
 // Outras funcionalidades
 
