@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/4767b707-55f6-4b8e-a007-c15825aef69b)
+
 Sabia que a procrastinação crônica afeta cerca de 20% da população? Pensando nisso, eu desenvolvi um website de To-do List! ☑
 
 O objetivo, além de praticar minhas habilidades com HTML, Tailwind CSS e JavaScript Vanilla, era ajudar pessoas que possuem dificuldades em regular suas vidas, e fazer as coisas que precisam ser feitas.
