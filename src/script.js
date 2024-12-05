@@ -167,8 +167,6 @@ okAlertButton.setAttribute('class', 'text-1xl p-2')
 
 // Utilizada para definir e acabar o intervalo de tempo
 let interval
-// Verifica se o timer está rodando. Utilizada para sair do intervalo quando estiver em outros escopos
-let isRunning = false
 startPausePomodoroButton.addEventListener('click', () => {
     // Se o botão for o de começar o timer
     if (startPausePomodoroButton.innerHTML.trim() === startSvg.trim()) {
@@ -215,7 +213,6 @@ startPausePomodoroButton.addEventListener('click', () => {
         }
     } else { // Se for o ícone de pausar
         startPausePomodoroButton.innerHTML = startSvg
-        isRunning = false
         clearInterval(interval)
         interval = null
     }
