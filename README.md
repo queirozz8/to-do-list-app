@@ -25,15 +25,15 @@ git clone https://github.com/queirozz8/To-do-List-App.git
 ```
 Vá para o diretório do projeto:
 ```
-cd To-do-List-App/
+cd to-do-list-app/
 ```
 Rode esse comando para instalar todas as dependências (Tailwind CSS):
 ```
 npm install
 ```
-Rode o script `build:css` para criar `output.css` dentro de `dist/`, reduzir o tamanho dele e rodar o software:
+Rode o script `build` para criar `output.css`, reduzir o tamanho dele e rodar o software:
 ```
-npm run build:css
+npm run build
 ```
 Execute o arquivo HTML, ou abra o arquivo com o Live Server no seu Visual Studio Code.
 
@@ -68,15 +68,15 @@ git clone https://github.com/queirozz8/To-do-List-App.git
 ```
 Go to the directory of the project:
 ```
-cd To-do-List-App/
+cd to-do-list-app/
 ```
 Run this command to install all the dependencies (Tailwind CSS):
 ```
 npm install
 ```
-Run the `build:css` script to create `output.css` inside `dist/`, minify it and run the software:
+Run the `build` script to create `output.css`, minify it and run the software:
 ```
-npm run build:css
+npm run build
 ```
 Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
 
