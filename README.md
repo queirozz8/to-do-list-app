@@ -21,7 +21,7 @@ The objective, in addition to practice my skills with HTML, Tailwind CSS and Van
 <h2>I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.</h2>
 
 
-First, o a git clone of this project:
+First, do a git clone of this project:
 ```
 git clone https://github.com/queirozz8/To-do-List-App.git
 ```
