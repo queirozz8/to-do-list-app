@@ -21,25 +21,25 @@ The objective, in addition to practice my skills with HTML, Tailwind CSS and Van
 <h2>I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.</h2>
 
 
-First, do a git clone of this project:
+1. First, do a git clone of this project:
 ```
 git clone https://github.com/queirozz8/To-do-List-App.git
 ```
-Go to the directory of the project:
+2. Go to the directory of the project:
 ```
 cd to-do-list-app/
 ```
-Run this command to install all the dependencies (Tailwind CSS):
+3. Run this command to install all the dependencies (Tailwind CSS):
 ```
 npm install
 ```
-Run the `build` script to create `output.css`, minify it and run the software:
+4. Run the `build` script to create `output.css`, minify it and run the software:
 ```
 npm run build
 ```
-Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
+5. Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
 
-<h1>That's it! This project was made by Rick with ☕ and 💻.</h1>
+<h2>That's it! This project was made by Rick with ☕ and 💻.</h2>
 
 
 <h1>VERSÃO PT-BR</h1>
@@ -61,22 +61,22 @@ O objetivo, além de praticar minhas habilidades com HTML, Tailwind CSS e JavaSc
 <h1>DOCUMENTAÇÃO PARA INSTALAÇÃO LOCAL USANDO O VISUAL STUDIO CODE</h1>
 <h2>Eu recomendo você instalar a extensão Live Server ou uma similar no seu Visual Studio Code para abrir o arquivo.</h2>
 
-Primeiro, faça um git clone desse projeto:
+1. Primeiro, faça um git clone desse projeto:
 ```
 git clone https://github.com/queirozz8/To-do-List-App.git
 ```
-Vá para o diretório do projeto:
+2. Vá para o diretório do projeto:
 ```
 cd to-do-list-app/
 ```
-Rode esse comando para instalar todas as dependências (Tailwind CSS):
+3. Rode esse comando para instalar todas as dependências (Tailwind CSS):
 ```
 npm install
 ```
-Rode o script `build` para criar `output.css`, reduzir o tamanho dele e rodar o software:
+4. Rode o script `build` para criar `output.css`, reduzir o tamanho dele e rodar o software:
 ```
 npm run build
 ```
-Execute o arquivo HTML, ou abra o arquivo com o Live Server no seu Visual Studio Code.
+5. Execute o arquivo HTML, ou abra o arquivo com o Live Server no seu Visual Studio Code.
 
-<h1>É isso! Este projeto foi criado por Rick com ☕ e 💻.</h1>
+<h2>É isso! Este projeto foi criado por Rick com ☕ e 💻.</h2>
