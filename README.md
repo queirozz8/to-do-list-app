@@ -1,5 +1,47 @@
 ![image](https://github.com/user-attachments/assets/4767b707-55f6-4b8e-a007-c15825aef69b)
 
+<h1>ENGLISH VERSION</h1>
+
+You knew that chronicle procrastination affects about 20% of population? Because of that, I developed a To-do List website! ☑
+
+The objective, in addition to practice my skills with HTML, Tailwind CSS and Vanilla JavaScript, was to help people that have difficulties in regulating their lifes, and do what needs to be done.
+
+🚀 Funtionalities:
+• Add and remove tasks
+• Clear all tasks button
+• Pomodoro timer included, with notifications when it stops
+• Light and Dark mode
+• Toggle language: Brazilian Portuguese and English
+• Tasks limit, avoiding production ilusion and Overplanning
+• Support all screen sizes
+
+
+<h1>DOCUMENTATION FOR LOCAL INSTALLATION USING VISUAL STUDIO CODE</h1>
+<h2>I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.</h2>
+
+
+First, o a git clone of this project:
+```
+git clone https://github.com/queirozz8/To-do-List-App.git
+```
+Go to the directory of the project:
+```
+cd to-do-list-app/
+```
+Run this command to install all the dependencies (Tailwind CSS):
+```
+npm install
+```
+Run the `build` script to create `output.css`, minify it and run the software:
+```
+npm run build
+```
+Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
+
+<h1>That's it! This project was made by Rick with ☕ and 💻.</h1>
+
+
+<h1>VERSÃO PT-BR</h1>
 Sabia que a procrastinação crônica afeta cerca de 20% da população? Pensando nisso, eu desenvolvi um website de To-do List! ☑
 
 O objetivo, além de praticar minhas habilidades com HTML, Tailwind CSS e JavaScript Vanilla, era ajudar pessoas que possuem dificuldades em regular suas vidas, e fazer as coisas que precisam ser feitas.
@@ -38,46 +80,3 @@ npm run build
 Execute o arquivo HTML, ou abra o arquivo com o Live Server no seu Visual Studio Code.
 
 <h1>É isso! Este projeto foi criado por Rick com ☕ e 💻.</h1>
-
-
-
-<h1>ENGLISH VERSION</h1>
-
-You knew that chronicle procrastination affects about 20% of population? Because of that, I developed a To-do List website! ☑
-
-The objective, in addition to practice my skills with HTML, Tailwind CSS and Vanilla JavaScript, was to help people that have difficulties in regulating their lifes, and do what needs to be done.
-
-🚀 Funtionalities:
-• Add and remove tasks
-• Clear all tasks button
-• Pomodoro timer included, with notifications when it stops
-• Light and Dark mode
-• Toggle language: Brazilian Portuguese and English
-• Tasks limit, avoiding production ilusion and Overplanning
-• Support all screen sizes
-
-🔗 Site: https://todolist-rick.vercel.app
-
-<h1>DOCUMENTATION FOR LOCAL INSTALLATION USING VISUAL STUDIO CODE</h1>
-<h2>I recommend you to install the Live Server extension or similar in your Visual Studio Code to open the archive.</h2>
-
-
-First, o a git clone of this project:
-```
-git clone https://github.com/queirozz8/To-do-List-App.git
-```
-Go to the directory of the project:
-```
-cd to-do-list-app/
-```
-Run this command to install all the dependencies (Tailwind CSS):
-```
-npm install
-```
-Run the `build` script to create `output.css`, minify it and run the software:
-```
-npm run build
-```
-Execute the HTML archive, or open the archive with Live Server in your Visual Studio Code.
-
-<h1>That's it! This project was made by Rick with ☕ and 💻.</h1>
