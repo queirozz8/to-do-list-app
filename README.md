@@ -1,4 +1,5 @@
 ![image](https://github.com/user-attachments/assets/4767b707-55f6-4b8e-a007-c15825aef69b)
+🔗 Site: https://todolist-rick.vercel.app
 
 <h1>ENGLISH VERSION</h1>
 
@@ -56,7 +57,6 @@ O objetivo, além de praticar minhas habilidades com HTML, Tailwind CSS e JavaSc
 • Limite de tarefas, evitando a Ilusão de Produtividade e no Overplanning
 • Suporte à todos os tamanhos de tela
 
-🔗 Site: https://todolist-rick.vercel.app
 
 <h1>DOCUMENTAÇÃO PARA INSTALAÇÃO LOCAL USANDO O VISUAL STUDIO CODE</h1>
 <h2>Eu recomendo você instalar a extensão Live Server ou uma similar no seu Visual Studio Code para abrir o arquivo.</h2>
