@@ -63,7 +63,7 @@ O objetivo, além de praticar minhas habilidades com HTML, Tailwind CSS e JavaSc
 
 1. Primeiro, faça um git clone desse projeto:
 ```
-git clone https://github.com/queirozz8/To-do-List-App.git
+git clone https://github.com/queirozz8/to-do-list-app.git
 ```
 2. Vá para o diretório do projeto:
 ```
