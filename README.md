@@ -1,5 +1,5 @@
 ![image](https://github.com/user-attachments/assets/4767b707-55f6-4b8e-a007-c15825aef69b)
-🔗 Site: https://todolist-rick.vercel.app
+🔗 Site: <a href="https://todolist-rick.vercel.app" target="_blank">
 
 <h1>ENGLISH VERSION</h1>
 
