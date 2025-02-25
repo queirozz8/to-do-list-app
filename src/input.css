@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Remove as setas do input de Pomodoro nos navegadores Chromium */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
+}
+
+/* Remove as setas do input de Pomodoro no Firefox */
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
